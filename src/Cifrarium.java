@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Cifrario extends AbstractCifrarium {
+public class Cifrarium extends AbstractCifrarium {
 	
-	public Cifrario(int shift) {
+	public Cifrarium(int shift) {
 		super();
 		this.alphabet = new ArrayList<Character>();
 		this.shift = shift;

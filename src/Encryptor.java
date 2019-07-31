@@ -4,7 +4,7 @@ public class Encryptor {
 	public static void main(String[] args) {
 		headDescription();
 		if (args.length >= 2) { 
-		Cifrario cifrarium = new Cifrario(3);
+		Cifrarium cifrarium = new Cifrarium(3);
 			if(args[0].toLowerCase().equals("-e")) {
 	    	   System.out.println("Plain Text: "+args[1]);
 	    	   System.out.println("Encrypted Text: "+cifrarium.encrypt(args[1]));
