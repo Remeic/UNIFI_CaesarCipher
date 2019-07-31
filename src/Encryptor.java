@@ -1,4 +1,10 @@
-
+/**
+ * UniFi - Elaborato Fondamenti di Telecomunicazioni
+ * Cifrario di Cesare
+ * Codice disponibile: https://github.com/Remeic/UNIFI_CaesarCipher
+ * @author Giulio Fagioli 6006222
+ *
+ */
 public class Encryptor {
 
 	public static void main(String[] args) {
