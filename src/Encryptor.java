@@ -10,10 +10,14 @@ public class Encryptor {
 	public static void main(String[] args) {
 		headDescription();
 		if (args.length >= 2) { 
-		Cifrarium cifrarium = new Cifrarium(3);
+			Cifrarium cifrarium = new Cifrarium(3);
 			if(args[0].toLowerCase().equals("-e")) {
-	    	   System.out.println("Plain Text: "+args[1]);
-	    	   System.out.println("Encrypted Text: "+cifrarium.encrypt(args[1]));
+	    	   String phrase = "";
+	    	   for(int i=1;i<args.length;i++) {
+	    		   phrase += args[i];
+	    		   phrase += " ";
+	    	   }
+	    	   System.out.println("Encrypted Text: "+cifrarium.encrypt(phrase));
 			}
 			else if(args[0].equals("-d")) {
 	    	   System.out.println("Encrypted Text: "+args[1]);
