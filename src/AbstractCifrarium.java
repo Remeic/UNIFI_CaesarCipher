@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
  * Abstract Class that implements CifrariumOperation
  * Implements the two methods by specifying their behavior for the Caesar Cipher 
@@ -14,13 +15,22 @@ public abstract class AbstractCifrarium implements CifrariumOperation {
 	abstract public void initAlphabet();
 	
 	public String encrypt(String phrase) {
-		phrase = phrase.toLowerCase();
-		return getShiftedPhrase(phrase,shift);
+		String result = "Can't crypt this phrase - Contains invalid char";
+		if(this.checkIsValidPhrase(phrase)) {
+			phrase = phrase.toLowerCase();
+			result = getShiftedPhrase(phrase,shift);
+		}
+		return result;
 	}
 	
 	
 	public String decrypt(String phrase) {
-		return getShiftedPhrase(phrase,(-1)*shift);
+		String result = "Can't decrypt this phrase - Contains invalid char";
+		if(this.checkIsValidPhrase(phrase)) {
+			phrase = phrase.toLowerCase();
+			return getShiftedPhrase(phrase,(-1)*shift);
+		}
+		return result;
 	}
 	
 	/**
@@ -48,19 +58,42 @@ public abstract class AbstractCifrarium implements CifrariumOperation {
 		List<Character> result = new ArrayList<Character>();
 		char[] listOfChar = phrase.toCharArray();
 		for(char element: listOfChar) {
-			if(this.alphabet.contains(element)) {
+			if(!Character.isWhitespace(element)) {
 				int charPos = this.alphabet.indexOf(element);
 				result.add(this.getShiftedChar(charPos, shift));
+			}
+			else {
+				result.add(element);
 			}
 		}
 		
 		return convertToString(result);
 	}
 	
+	/**
+	 * Method for convert List of Character to String
+	 * @param shiftedResult List of shifted char
+	 * @return String with all character inside List
+	 */
 	private String convertToString(List<Character> shiftedResult) {
 		String result = "";
 		for(char c: shiftedResult) {
 			result += c;
+		}
+		return result;
+	}
+	
+	/**
+	 * Method for check if all char inside phrase is contained in the alphabet
+	 * @param phrase phrase to encrypt or decrypt
+	 * @return False if phrase contain char that aren't contained in alphabet list, true otherwise
+	 */
+	private boolean checkIsValidPhrase(String phrase) {
+		boolean result = true;
+		for(char c: phrase.toCharArray()) {
+			if( this.alphabet.indexOf(c) == -1 && !Character.isWhitespace(c)) {
+				result = false;
+			}
 		}
 		return result;
 	}
